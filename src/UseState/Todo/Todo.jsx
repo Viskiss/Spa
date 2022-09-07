@@ -1,48 +1,55 @@
-import React, { useState } from "react";
+import { useState } from "react";
+
 import styles from "./Todo.module.css";
-import { Todos } from "./data";
-import { useEffect } from "react";
 
 function Todo() {
   const [text, setText] = useState("");
-  const [todo, setTodo] = useState([]);
-
-  let result = todo.map((value, id) => {
-    return (
-      <div className={styles.itemTodo} key={id}>
-        {value}
-        <button
-          onClick={() => setTodo((prev) => prev.filter((value, i) => i !== id))}
-        >
-          Delete
-        </button>
-      </div>
-    );
-  });
+  const [todos, setTodos] = useState([]);
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (text.trim().length === 0) {
-      setText("");
-      return;
+
+    if (text.trim()) {
+      setTodos([...todos, { id: Date.now(), value: text }]);
     }
-    console.log(text);
-    // Todos.value = text;
-    setTodo([...todo, text]);
+
     setText("");
   };
 
-  let TextInput = (event) => {
+  const handleChangeInput = (event) => {
     setText(event.target.value);
+  };
+
+  const handleDeleteTodo = (id) => {
+    setTodos((prev) => prev.filter((todo) => todo.id !== id))
   };
 
   return (
     <div className={styles.input}>
       <form className={styles.form} onSubmit={submitHandler}>
-        <input value={text} onChange={TextInput} type="text" />
-        <button type="submit">Add</button>
+        <input
+          type="text"
+          value={text}
+          onChange={handleChangeInput}
+        />
+        <button type="submit">
+          Add
+        </button>
       </form>
-      <div className={styles.result}>{result}</div>
+      <div className={styles.result}>
+        {
+          todos.map(({ value, id }) => (
+            <div className={styles.itemTodo} key={id}>
+              <span>
+                {value}
+              </span>
+              <button onClick={handleDeleteTodo.bind(null, id)}>
+                Delete
+              </button>
+            </div>
+          ))
+        }
+      </div>
     </div>
   );
 }
