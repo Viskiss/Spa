@@ -1,0 +1,25 @@
+.input {
+  padding-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.input button {
+  margin: 10px;
+  height: 20px;
+  background-color: rgba(18, 16, 110, 0.053);
+  border: 1px solid black;
+  font-weight: 700;
+  border-radius: 5px;
+}
+
+.input button:hover {
+  color: rgb(96, 96, 97);
+  transition: 0.4s;
+}
+
+.result p {
+  font-weight: 700;
+}
