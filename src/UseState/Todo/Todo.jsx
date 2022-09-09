@@ -1,48 +1,84 @@
 import React, { useState } from "react";
-import styles from "./Todo.module.css";
-import { Todos } from "./data";
 import { useEffect } from "react";
+import { Todos } from "../../constans/data";
+import styles from "./Todo.module.css";
+// import { todoItem } from "./Item/todoItem";
 
 function Todo() {
-  const [text, setText] = useState("");
-  const [todo, setTodo] = useState([]);
+  const [value, setValue] = useState("");
+  // const [todos, setTodos] = useState(Todos);
+  const [result, setResult] = useState("");
+  const [todos, setTodos] = useState(
+    localStorage.getItem("todos")
+      ? JSON.parse(localStorage.getItem("todos"))
+      : []
+  );
 
-  let result = todo.map((value, id) => {
-    return (
-      <div className={styles.itemTodo} key={id}>
-        {value}
-        <button
-          onClick={() => setTodo((prev) => prev.filter((value, i) => i !== id))}
-        >
-          Delete
-        </button>
-      </div>
-    );
-  });
+  const setTodosWithSave = (todos) => {
+    setTodos(todos);
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
 
   const submitHandler = (e) => {
     e.preventDefault();
-    if (text.trim().length === 0) {
-      setText("");
-      return;
+    if (value.trim()) {
+      setTodosWithSave([...todos, { id: Date.now(), value: value }]);
     }
-    console.log(text);
-    // Todos.value = text;
-    setTodo([...todo, text]);
-    setText("");
+    console.log(value);
+    setValue("");
   };
 
-  let TextInput = (event) => {
-    setText(event.target.value);
+  const handleDeleteTodo = (id) => {
+    const newTodos = [...todos].filter((todo) => todo.id !== id);
+    setTodosWithSave(newTodos);
+    // setTodosWithSave((prev) => prev.filter((todo) => todo.id !== id));
+  };
+
+  const handleChangeInput = (event) => {
+    setValue(event.target.value);
+  };
+
+  const changeInputTodo = (event, value) => {
+    setResult(event.target.value);
+    value = result;
+  };
+
+  const submitInputTodo = (event, value, id) => {
+    event.preventDefault();
+    redactedTodo();
+    setResult("");
+    console.log(result);
+  };
+
+  const redactedTodo = (value, id) => {
+    if (todos.id === id) {
+      setTodos([{ id: todos.id, value: result }]);
+    }
   };
 
   return (
     <div className={styles.input}>
       <form className={styles.form} onSubmit={submitHandler}>
-        <input value={text} onChange={TextInput} type="text" />
+        <input value={value} onChange={handleChangeInput} type="value" />
         <button type="submit">Add</button>
       </form>
-      <div className={styles.result}>{result}</div>
+      {/* <todoItem /> */}
+      <div className={styles.result}>
+        {todos.map(({ value, id }) => (
+          <div className={styles.itemTodo} key={id}>
+            <form onSubmit={submitInputTodo}>
+              {value}
+              <input
+                id={todos.id}
+                onChange={changeInputTodo}
+                value={result}
+                type="text"
+              />
+            </form>
+            <button onClick={handleDeleteTodo.bind(null, id)}>Delete</button>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
