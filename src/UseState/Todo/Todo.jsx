@@ -2,49 +2,50 @@ import React, { useState } from "react";
 import { useEffect } from "react";
 import { Todos } from "../../constans/data";
 import styles from "./Todo.module.css";
-// import { todoItem } from "./Item/todoItem";
+import  TodoItem  from "./TodoItem";
 
-function Todo() {
+function Todo(props) {
+
   const [value, setValue] = useState("");
   // const [todos, setTodos] = useState(Todos);
   const [result, setResult] = useState("");
-  const [todos, setTodos] = useState(
-    localStorage.getItem("todos")
-      ? JSON.parse(localStorage.getItem("todos"))
-      : []
+  const [todos, setTodos] = useState(JSON.parse(localStorage.getItem("todos") || "[]")
+  );
+
+  useEffect(
+    () => {
+      localStorage.setItem("todos", JSON.stringify(todos));
+    },
+    [todos],
   );
 
   const setTodosWithSave = (todos) => {
     setTodos(todos);
-    localStorage.setItem("todos", JSON.stringify(todos));
   };
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (value.trim()) {
-      setTodosWithSave([...todos, { id: Date.now(), value: value }]);
+      setTodos([...todos, { id: Date.now(), value: value }]);
     }
     console.log(value);
     setValue("");
   };
 
   const handleDeleteTodo = (id) => {
-    const newTodos = [...todos].filter((todo) => todo.id !== id);
+    const newTodos =todos.filter((todo) => todo.id !== id);
     setTodosWithSave(newTodos);
-    // setTodosWithSave((prev) => prev.filter((todo) => todo.id !== id));
   };
 
   const handleChangeInput = (event) => {
     setValue(event.target.value);
   };
 
-  const changeInputTodo = (event, value) => {
-    setResult(event.target.value);
-    value = result;
-  };
+  // const changeInputTodo = (event, value) => {
+  //   setResult(event.target.value);
+  // };
 
-  const submitInputTodo = (event, value, id) => {
-    event.preventDefault();
+  const submitInputTodo = () => {
     if (result.length !== 0) {
       redactedTodo();
     } else {
@@ -54,8 +55,12 @@ function Todo() {
   };
 
   const redactedTodo = (value, id) => {
-    if ((todos) => todos.filter((todo) => todo.id === id)) {
-      setTodosWithSave([...todos, { id: todos.id, value: result }]);
+     const findTodo = todos.find((todo) => todo.id === id)
+    if(!value) {
+      handleDeleteTodo(id)
+    } else if (findTodo) {
+ findTodo.value = value
+      setTodos([...todos]);
     }
   };
 
@@ -67,7 +72,10 @@ function Todo() {
       </form>
       {/* <todoItem /> */}
       <div className={styles.result}>
-        {todos.map(({ value, id }) => (
+        {todos.map((todo) => (
+          <TodoItem redactedTodo={redactedTodo} submitInputTodo={submitInputTodo}  handleDeleteTodo={handleDeleteTodo} todo={todo} key={todo.id}/>
+        ))}
+        {/* {todos.map(({ value, id }) => (
           <div className={styles.itemTodo} key={id}>
             <form onSubmit={submitInputTodo}>
               {value}
@@ -80,7 +88,7 @@ function Todo() {
             </form>
             <button onClick={handleDeleteTodo.bind(null, id)}>Delete</button>
           </div>
-        ))}
+        ))} */}
       </div>
     </div>
   );
