@@ -45,14 +45,17 @@ function Todo() {
 
   const submitInputTodo = (event, value, id) => {
     event.preventDefault();
-    redactedTodo();
+    if (result.length !== 0) {
+      redactedTodo();
+    } else {
+      alert("empty todo!");
+    }
     setResult("");
-    console.log(result);
   };
 
   const redactedTodo = (value, id) => {
-    if (todos.id === id) {
-      setTodos([{ id: todos.id, value: result }]);
+    if ((todos) => todos.filter((todo) => todo.id === id)) {
+      setTodosWithSave([...todos, { id: todos.id, value: result }]);
     }
   };
 
@@ -69,7 +72,7 @@ function Todo() {
             <form onSubmit={submitInputTodo}>
               {value}
               <input
-                id={todos.id}
+                id={id}
                 onChange={changeInputTodo}
                 value={result}
                 type="text"
