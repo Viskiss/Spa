@@ -6,27 +6,35 @@
   flex-direction: column;
 }
 
-.input button {
-  margin: 10px;
-  height: inherit;
-  background-color: rgba(18, 16, 110, 0.053);
+.form button {
+  margin-left: 10px;
+  height: 30px;
+  width: 50px;
+  background-color: transparent;
   border: 1px solid black;
   font-weight: 700;
-  border-radius: 5px;
-  border: 1px solid black;
-  border-radius: 5px;
+  font-size: 15px;
+  border-radius: 2px;
+  border: none;
   cursor: pointer;
+  box-shadow: 0px 0px 10px 4px rgb(2 2 16 / 10%);
 }
 
 .input button:hover {
-  color: rgb(96, 96, 97);
+  color: rgb(255, 255, 255);
   transition: 0.4s;
 }
 
-.input input {
-  border: 3px solid black;
-  border-radius: 5px;
-  font-weight: 700;
+.form input {
+  margin-bottom: 30px;
+  border: none;
+  border-radius: 2px;
+  font-weight: 900;
+  background-color: inherit;
+  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 30%);
+  height: 30px;
+  width: 250px;
+  outline: none;
 }
 
 .result {
@@ -37,18 +45,142 @@
 
 .itemTodo {
   width: 400px;
-  padding: 10px;
+  padding: 12px;
+  padding-left: 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   font-weight: 700;
-  background: #f6f6f6;
+  background: #ffffff23;
   border-radius: 5px;
-  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 10%);
+  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 15%);
   transition: transform 0.3s, box-shadow 0.5s;
+}
+
+.todoEnd {
+  width: 400px;
+  padding: 12px;
+  padding-left: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 700;
+  background: #00000023;
+  border-radius: 5px;
+  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 15%);
+  transition: transform 0.5s, box-shadow 0.5s;
+}
+
+.todoEnd input {
+  padding-left: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  border: none;
+  text-decoration: line-through;
+  font-weight: 700;
+}
+
+.todoEnd input:focus {
+  outline: none;
+}
+
+.todoEnd:hover {
+  transform: scale(1.02);
+  box-shadow: 0px 0px 8px 8px rgb(2 2 16 / 10%);
+}
+
+.todoEnd label span {
+  display: none;
 }
 
 .itemTodo:hover {
   transform: scale(1.02);
   box-shadow: 0px 0px 8px 8px rgb(2 2 16 / 10%);
+}
+
+.itemTodo input {
+  padding-left: 20px;
+  cursor: pointer;
+  border: none;
+  background-color: inherit;
+  border: none;
+
+  font-weight: 700;
+}
+
+.itemTodo input:focus {
+  outline: none;
+}
+
+.icon {
+  border: none;
+  background: none;
+  outline: none;
+}
+
+.btnDelete {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.btnDelete :hover {
+  box-shadow: 0px 0px 5px 5px rgb(1 1 1 / 5%);
+}
+
+/* //////////////////////////// */
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 10px;
+  left: 0px;
+  right: 10px;
+  bottom: 0;
+  background-color: rgba(146, 143, 241, 0.292);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 15px;
+  width: 20px;
+  left: 1px;
+  bottom: 4px;
+  background-color: rgba(255, 255, 255, 0.506);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: transparent;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider {
+  border-radius: 34px;
+}
+
+.slider:before {
+  border-radius: 50%;
 }

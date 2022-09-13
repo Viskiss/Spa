@@ -1,85 +1,83 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
-import { Todos } from "../../constans/data";
+import TodoItem from "./TodoItem";
 import styles from "./Todo.module.css";
-// import { todoItem } from "./Item/todoItem";
+import { useContext } from "react";
+import { TodoContext } from "../../context";
 
-function Todo() {
-  const [value, setValue] = useState("");
-  // const [todos, setTodos] = useState(Todos);
-  const [result, setResult] = useState("");
-  const [todos, setTodos] = useState(
-    localStorage.getItem("todos")
-      ? JSON.parse(localStorage.getItem("todos"))
-      : []
-  );
-
-  const setTodosWithSave = (todos) => {
-    setTodos(todos);
-    localStorage.setItem("todos", JSON.stringify(todos));
-  };
+function Todo(props) {
+  const {
+    todos,
+    addTodo,
+    updateTodo,
+    deleteTodo,
+    value,
+    setValue,
+    dispatchFilter,
+    filter,
+  } = useContext(TodoContext);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     if (value.trim()) {
-      setTodosWithSave([...todos, { id: Date.now(), value: value }]);
+      addTodo(value);
     }
-    console.log(value);
+
     setValue("");
   };
 
   const handleDeleteTodo = (id) => {
-    const newTodos = [...todos].filter((todo) => todo.id !== id);
-    setTodosWithSave(newTodos);
-    // setTodosWithSave((prev) => prev.filter((todo) => todo.id !== id));
+    deleteTodo(id);
   };
 
   const handleChangeInput = (event) => {
     setValue(event.target.value);
   };
 
-  const changeInputTodo = (event, value) => {
-    setResult(event.target.value);
-    value = result;
+  const handleShowAll = () => {
+    dispatchFilter({ type: "SHOW_ALL" });
   };
 
-  const submitInputTodo = (event, value, id) => {
-    event.preventDefault();
-    if (result.length !== 0) {
-      redactedTodo();
-    } else {
-      alert("empty todo!");
+  const handleShowDone = () => {
+    dispatchFilter({ type: "SHOW_DONE" });
+  };
+
+  const filteredTodos = todos.filter((todo) => {
+    if (filter === "ALL") {
+      return true;
     }
-    setResult("");
-  };
 
-  const redactedTodo = (value, id) => {
-    if ((todos) => todos.filter((todo) => todo.id === id)) {
-      setTodosWithSave([...todos, { id: todos.id, value: result }]);
+    if (filter === "DONE" && todo.checked) {
+      return true;
+    }
+
+    return false;
+  });
+
+  const redactedTodo = (value, id, checked) => {
+    if (!value) {
+      handleDeleteTodo(id);
+    } else {
+      updateTodo({ id, checked, value });
     }
   };
 
   return (
     <div className={styles.input}>
       <form className={styles.form} onSubmit={submitHandler}>
-        <input value={value} onChange={handleChangeInput} type="value" />
+        <input type="value" value={value} onChange={handleChangeInput} />
         <button type="submit">Add</button>
+        <button onClick={handleShowAll}>All</button>
+        <button onClick={handleShowDone}>Done</button>
       </form>
-      {/* <todoItem /> */}
+
       <div className={styles.result}>
-        {todos.map(({ value, id }) => (
-          <div className={styles.itemTodo} key={id}>
-            <form onSubmit={submitInputTodo}>
-              {value}
-              <input
-                id={id}
-                onChange={changeInputTodo}
-                value={result}
-                type="text"
-              />
-            </form>
-            <button onClick={handleDeleteTodo.bind(null, id)}>Delete</button>
-          </div>
+        {filteredTodos.map((todo) => (
+          <TodoItem
+            todo={todo}
+            key={todo.id}
+            redactedTodo={redactedTodo}
+            handleDeleteTodo={handleDeleteTodo}
+          />
         ))}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import styles from "./Input.module.css";
+import styles from "./List.module.css";
 
 function Input() {
   const [text, setText] = useState("");
@@ -15,7 +15,6 @@ function Input() {
       setText("");
       return;
     }
-    console.log(text);
     setList([...list, text]);
     setText("");
   };
