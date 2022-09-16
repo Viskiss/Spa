@@ -12,6 +12,7 @@
 
 .nav a {
   backdrop-filter: blur();
+  color: rgb(115, 49, 133);
   padding: 20px;
   padding-right: 50px;
   text-decoration: none;
