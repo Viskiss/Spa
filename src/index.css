@@ -1,12 +1,16 @@
 body {
   margin: 0;
+  height: 100%;
+  background-size: cover;
   justify-content: center;
-   font-family: 'Ubuntu', sans-serif;
+  background-repeat: no-repeat;
+  font-family: "Ubuntu", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-image: url("/src/constans/img/fons5.jpg");
 }
 
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
