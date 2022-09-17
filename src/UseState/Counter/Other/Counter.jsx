@@ -1,16 +1,16 @@
 import React, { useState } from "react";
-import { useEffect } from "react";
-
+import styles from "../common.module.css";
 
 function Counter() {
   const [count, setCount] = useState(0);
-  
 
   return (
-    <div >
+    <div className={styles.item}>
       <h1>Counter: {count}</h1>
-      <button onClick={() => setCount(count + 1)}>+</button>
-      <button onClick={() => setCount(count - 1)}>-</button>
+      <div className={styles.buttons}>
+        <button onClick={() => setCount(count + 1)}>+</button>
+        <button onClick={() => setCount(count - 1)}>-</button>
+      </div>
     </div>
   );
 }

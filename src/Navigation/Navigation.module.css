@@ -1,25 +1,25 @@
 .nav {
   height: 50px;
   display: flex;
+  font-size: 20px;
+  font-weight: 700;
   align-items: center;
   justify-content: center;
-  background-color: rgba(192, 191, 240, 0.162);
-  font-weight: 700;
-  font-size: 20px;
   backdrop-filter: blur(3px);
   box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 10%);
+  background-color: rgba(192, 191, 240, 0.162);
 }
 
 .nav a {
-  backdrop-filter: blur();
-  color: rgb(115, 49, 133);
   padding: 20px;
+  font-size: 22px;
   padding-right: 50px;
   text-decoration: none;
-  font-size: 22px;
+  backdrop-filter: blur();
+  color: rgb(115, 49, 133);
 }
 
 .nav a:hover {
-  color: rgb(244, 244, 255);
   transition: 0.4s;
+  color: rgb(244, 244, 255);
 }

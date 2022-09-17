@@ -3,7 +3,7 @@ import styles from "./Todo.module.css";
 import { useContext } from "react";
 import { TodoContext } from "../../context";
 
-function Todo(props) {
+function Todo() {
   const {
     todos,
     addTodo,

@@ -1,58 +1,58 @@
 .input {
-  padding-top: 50px;
   display: flex;
+  padding-top: 50px;
   align-items: center;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
 }
 
 .form button {
-  margin-left: 10px;
-  height: 30px;
   width: 50px;
-  background-color: transparent;
-  border: 1px solid black;
-  font-weight: 700;
-  font-size: 15px;
-  border-radius: 2px;
+  height: 30px;
   border: none;
+  font-size: 15px;
   cursor: pointer;
+  font-weight: 700;
+  margin-left: 10px;
+  border-radius: 2px;
+  border: 1px solid black;
+  background-color: rgba(102, 102, 103, 0.245);
   box-shadow: 0px 0px 10px 4px rgb(2 2 16 / 10%);
 }
 
 .input button:hover {
-  color: rgb(255, 255, 255);
   transition: 0.4s;
+  color: rgb(255, 255, 255);
 }
 
 .form input {
-  margin-bottom: 30px;
   border: none;
-  border-radius: 2px;
-  font-weight: 900;
-  background-color: inherit;
-  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 30%);
   height: 30px;
   width: 250px;
   outline: none;
+  font-weight: 900;
+  border-radius: 2px;
+  margin-bottom: 30px;
+  background-color: inherit;
+  box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 30%);
 }
 
 .result {
+  gap: 30px;
   display: flex;
   flex-direction: column-reverse;
-  gap: 30px;
 }
 
 .itemTodo {
   width: 400px;
   padding: 12px;
-  padding-left: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-weight: 700;
-  background: #ffffff23;
+  padding-left: 20px;
   border-radius: 5px;
+  align-items: center;
+  background: #ffffff23;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 15%);
   transition: transform 0.3s, box-shadow 0.5s;
 }
@@ -60,25 +60,25 @@
 .todoEnd {
   width: 400px;
   padding: 12px;
-  padding-left: 20px;
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   font-weight: 700;
-  background: #00000023;
+  padding-left: 20px;
   border-radius: 5px;
+  align-items: center;
+  background: #00000023;
+  justify-content: space-between;
   box-shadow: 0px 0px 8px 4px rgb(2 2 16 / 15%);
   transition: transform 0.5s, box-shadow 0.5s;
 }
 
 .todoEnd input {
-  padding-left: 20px;
+  border: none;
+  border: none;
   cursor: pointer;
-  border: none;
-  background-color: inherit;
-  border: none;
-  text-decoration: line-through;
   font-weight: 700;
+  padding-left: 20px;
+  background-color: inherit;
+  text-decoration: line-through;
 }
 
 .todoEnd input:focus {
@@ -100,11 +100,11 @@
 }
 
 .itemTodo input {
-  padding-left: 20px;
+  border: none;
+  border: none;
   cursor: pointer;
-  border: none;
+  padding-left: 20px;
   background-color: inherit;
-  border: none;
 
   font-weight: 700;
 }
@@ -115,27 +115,25 @@
 
 .icon {
   border: none;
-  background: none;
   outline: none;
+  background: none;
 }
 
 .btnDelete {
-  background-color: transparent;
   border: none;
   cursor: pointer;
+  background-color: transparent;
 }
 
 .btnDelete :hover {
   box-shadow: 0px 0px 5px 5px rgb(1 1 1 / 5%);
 }
 
-/* //////////////////////////// */
-
 .switch {
-  position: relative;
-  display: inline-block;
   width: 60px;
   height: 34px;
+  position: relative;
+  display: inline-block;
 }
 
 .switch input {
@@ -143,27 +141,27 @@
 }
 
 .slider {
-  position: absolute;
-  cursor: pointer;
   top: 10px;
   left: 0px;
-  right: 10px;
   bottom: 0;
-  background-color: rgba(146, 143, 241, 0.292);
-  -webkit-transition: 0.4s;
+  right: 10px;
+  cursor: pointer;
   transition: 0.4s;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  background-color: rgba(146, 143, 241, 0.292);
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 15px;
-  width: 20px;
   left: 1px;
+  content: "";
+  width: 20px;
   bottom: 4px;
-  background-color: rgba(255, 255, 255, 0.506);
-  -webkit-transition: 0.4s;
+  height: 15px;
   transition: 0.4s;
+  position: absolute;
+  -webkit-transition: 0.4s;
+  background-color: rgba(255, 255, 255, 0.506);
 }
 
 input:checked + .slider {
@@ -171,12 +169,11 @@ input:checked + .slider {
 }
 
 input:checked + .slider:before {
-  -webkit-transform: translateX(26px);
-  -ms-transform: translateX(26px);
   transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  -webkit-transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider {
   border-radius: 34px;
 }
