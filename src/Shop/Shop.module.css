@@ -10,6 +10,19 @@
   overflow-y: scroll;
   align-items: center;
   flex-direction: column;
+  overflow-y: auto;
+}
+
+.container::-webkit-scrollbar {
+  width: 7px;
+  background-color: rgba(186, 186, 190, 0.3);
+  border-radius: 20px;
+}
+
+.container::-webkit-scrollbar-thumb {
+  height: 58px;
+  background-color: rgb(186, 186, 190);
+  border-radius: 20px;
 }
 
 .item {

@@ -66,8 +66,8 @@ function Todo() {
       <form className={styles.form} onSubmit={submitHandler}>
         <input type="value" value={value} onChange={handleChangeInput} />
         <button type="submit">Add</button>
-        <button onClick={handleShowAll}>All</button>
-        <button onClick={handleShowDone}>Done</button>
+        <button onClick={handleShowAll} type="button">All</button>
+        <button onClick={handleShowDone} type="button">Done</button>
       </form>
 
       <div className={styles.result}>
