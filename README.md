@@ -10,12 +10,16 @@
 ## Product list
 1. Server request
 2. Product card formation
+3. Sorting by category
 
 ## Other
 useState
 useEffect
 useReducer
 createContext
+Server request
+Possible pagination Product list
+
 
 
 
