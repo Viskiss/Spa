@@ -1,7 +1,7 @@
 .container {
   display: flex;
-  justify-content: center;
   margin-top: 50px;
+  justify-content: center;
 }
 
 .loader {
@@ -12,9 +12,9 @@
   animation: rotate 1s linear infinite;
 }
 .loader::before {
-  overflow: hidden;
   inset: 0px;
   content: "";
+  overflow: hidden;
   position: absolute;
   border-radius: 50%;
   box-sizing: border-box;

@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
 import React from "react";
-import reducer, { initialTodos } from "./store/todos/reducer";
+import reducer, { initialTodos } from "../../../store/todos/reducer";
 import {
   addTodoAction,
   deleteTodoAction,
   updateTodoAction,
-} from "./store/todos/actions";
-import filterReducer from "./UseState/Todo/filterReducer";
+} from "../../../store/todos/actions";
+import filterReducer from "../filterReducer";
 
 export const TodoContext = React.createContext();
 
@@ -34,6 +34,8 @@ const TodoContextProvider = (props) => {
   const updateTodo = (todo) => {
     dispatch(updateTodoAction(todo));
   };
+
+  
 
   return (
     <TodoContext.Provider

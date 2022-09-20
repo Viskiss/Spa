@@ -1,7 +1,7 @@
 import TodoItem from "./TodoItem";
 import styles from "./Todo.module.css";
 import { useContext } from "react";
-import { TodoContext } from "../../context";
+import { TodoContext } from "./Context/context";
 
 function Todo() {
   const {
